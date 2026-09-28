@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>RAYYON Mebel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css" />
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+
+  <div id="splash" class="splash">
+    <div class="splash-logo">
+      <span class="logo-gold">RAYYON</span><span class="logo-white">MEBEL</span>
+    </div>
+    <div class="splash-loader"></div>
+  </div>
+
+  <div id="app" class="app hidden">
+
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo-gold">RAYYON</span><span class="logo-white">MEBEL</span>
+      </div>
+      <div class="brand-tag">Zamonaviy mebel ustaxonasi</div>
+    </header>
+
+    <main id="main-content" class="main-content">
+
+      <!-- ============ HOME ============ -->
+      <section id="tab-home" class="tab-panel active">
+        <div class="promo-card">
+          <div class="promo-icon">✨</div>
+          <h3>RAYYON Mebel'ga xush kelibsiz!</h3>
+          <p>O'zingizga mos mebelni tanlang, o'lchamini kiriting — AI sizga taxminiy narxni hisoblab beradi.</p>
+        </div>
+
+        <div id="news-list" class="news-list"></div>
+
+        <button id="manager-btn" class="manager-btn">
+          <span>📞</span> Menejerga yozish
+        </button>
+      </section>
+
+      <!-- ============ KATALOG ============ -->
+      <section id="tab-catalog" class="tab-panel">
+        <div class="section-title">
+          <h2>Bizning ishlarimiz</h2>
+          <p>Ilhomlaning — o'zingizga yoqqan ko'rinishni tanlang</p>
+        </div>
+        <div id="portfolio-grid" class="portfolio-grid">
+          <div class="empty-state">
+            <div class="empty-icon">🖼</div>
+            <p>Portfolio tez orada to'ldiriladi</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ BUYURTMA (HISOBLAGICH) ============ -->
+      <section id="tab-order" class="tab-panel">
+        <div class="section-title">
+          <h2>Narxni hisoblang</h2>
+          <p>O'lchamni kiriting va kerakli variantlarni tanlang</p>
+        </div>
+
+        <div class="calc-block">
+          <label class="calc-label">Kenglik (mm)</label>
+          <div class="slider-row">
+            <input type="range" id="width-slider" min="300" max="6000" step="50" value="2000" class="slider" />
+            <input type="number" id="width-input" class="dim-input" value="2000" />
+          </div>
+        </div>
+
+        <div class="calc-block">
+          <label class="calc-label">Balandlik / chuqurlik (mm)</label>
+          <div class="slider-row">
+            <input type="range" id="height-slider" min="300" max="3000" step="50" value="800" class="slider" />
+            <input type="number" id="height-input" class="dim-input" value="800" />
+          </div>
+        </div>
+
+        <div id="options-container"></div>
+
+        <div class="ai-explain-card hidden" id="ai-explain-card">
+          <div class="ai-explain-icon">🤖</div>
+          <p id="ai-explain-text"></p>
+        </div>
+
+        <div id="order-form" class="order-form hidden">
+          <div class="section-title" style="margin-top:24px;">
+            <h2>Buyurtma qoldirish</h2>
+            <p>Narx ma'qul bo'lsa, ma'lumotingizni qoldiring — menejer bog'lanadi</p>
+          </div>
+          <input type="text" id="contact-name" class="text-input" placeholder="Ismingiz" />
+          <input type="tel" id="contact-phone" class="text-input" placeholder="+998 90 123 45 67" />
+          <textarea id="contact-comment" class="text-input" placeholder="Izoh (ixtiyoriy)" rows="2"></textarea>
+          <button id="submit-order-btn" class="primary-btn">✅ Buyurtma qoldirish</button>
+        </div>
+      </section>
+
+      <!-- ============ BUYURTMALARIM ============ -->
+      <section id="tab-orders" class="tab-panel">
+        <div class="section-title">
+          <h2>Buyurtmalarim</h2>
+          <p>Buyurtma holati va to'lovlaringiz</p>
+        </div>
+        <div id="orders-list" class="orders-list">
+          <div class="empty-state">
+            <div class="empty-icon">📦</div>
+            <p>Sizda hali buyurtma yo'q</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Sticky narx paneli (faqat Buyurtma tabida ko'rinadi) -->
+    <div id="price-bar" class="price-bar hidden">
+      <div class="price-bar-label">Taxminiy narx</div>
+      <div class="price-bar-value" id="price-bar-value">0 so'm</div>
+      <button id="calc-btn" class="price-bar-btn">🧮 Hisoblash</button>
+    </div>
+
+    <nav class="bottom-nav">
+      <button class="nav-btn active" data-tab="tab-home">
+        <span class="nav-icon">🏠</span><span>Bosh sahifa</span>
+      </button>
+      <button class="nav-btn" data-tab="tab-catalog">
+        <span class="nav-icon">🖼</span><span>Katalog</span>
+      </button>
+      <button class="nav-btn" data-tab="tab-order">
+        <span class="nav-icon">📝</span><span>Buyurtma</span>
+      </button>
+      <button class="nav-btn" data-tab="tab-orders">
+        <span class="nav-icon">📦</span><span>Buyurtmalarim</span>
+      </button>
+    </nav>
+
+  </div>
+
+<script src="/assets/app.js"></script>
+</body>
+</html>
